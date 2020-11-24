@@ -3,7 +3,7 @@ restrict default nomodify notrap nopeer noquery
 restrict 127.0.0.1
 restrict ::1
 
-server {{ ntp_server1 }}
+server ntp.t-2.net
 
 includefile /etc/ntp/crypto/pw
 keys /etc/ntp/keys
