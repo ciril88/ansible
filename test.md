@@ -1,4 +1,0 @@
-to je test
-
-
-testiramo!!!
