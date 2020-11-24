@@ -1,10 +1,4 @@
-driftfile /var/lib/ntp/drift
-restrict default nomodify notrap nopeer noquery
-restrict 127.0.0.1
-restrict ::1
-
 server ntp.t-2.net
-
-includefile /etc/ntp/crypto/pw
-keys /etc/ntp/keys
-disable monitor
+keyfile /etc/chrony/chrony.keys
+driftfile /var/lib/chrony/chrony.drift
+logdir /var/log/chrony
