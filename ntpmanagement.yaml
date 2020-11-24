@@ -4,8 +4,6 @@
 
   vars:
           ntp_server1: ntp.t-2.net
-          git_url: 'git@github.com:ciril88/ansible.git'
-          git_key: "{{ lookup('file','./id_rsa') }}"
 
   tasks:
           - name: install chrony ntp client package
@@ -17,13 +15,13 @@
           - name: deploy ntp.conf file to the client
             template:
                     src=templates/ntp.j2
-                    dest=/etc/ntp.conf
+                    dest=/etc/chrony.conf
                     owner=root
                     group=root
                     mode=0644
                     backup=yes
-            notify: start_restart_ntp_client
-            tags: copy_ntp_conf,start_ntp
+            notify: start_restart_chrony_client
+            tags: copy_chrony_conf,start_chrony
           
           - name: Ensure that chrony is started and enabled on boot
             tags: chronyd
@@ -34,8 +32,8 @@
 
   handlers:
 
-          - name: start_restart_ntp_client
+          - name: start_restart_chrony_client
             service:
-                    name=ntpd
+                    name=chronyd
                     state=restarted
                     enabled=yes
